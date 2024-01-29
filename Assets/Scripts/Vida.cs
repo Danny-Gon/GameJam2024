@@ -7,9 +7,12 @@ public class Vida : MonoBehaviour
 {
     public Image[] imagen;
     private float vidaMaxima = 100;
-
+    private AudioSource sonidoMoneda;
     int conta = 0;
-
+    private void Start()
+    {
+        sonidoMoneda = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter2D(Collision2D other)
     {
         
@@ -21,6 +24,8 @@ public class Vida : MonoBehaviour
 
             imagen[conta].fillAmount = 0;
             conta++;
+            sonidoMoneda.Play();
+
 
             //Debug.Log("contador" + conta);
 

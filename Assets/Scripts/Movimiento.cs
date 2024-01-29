@@ -15,17 +15,21 @@ public class Movimiento : MonoBehaviour
     public LayerMask layerSuelo;
     
     public bool puedoSaltar;
+    public bool Entro = true;
     
     public Transform tf;
     private Animator animator;
     public bool EstoySaltando;
 
     private Rigidbody2D rb;
+    private AudioSource sonidoSalto;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sonidoSalto = GetComponent<AudioSource>();
+        animator.SetBool("Entro", Entro);
     }
 
     private void FixedUpdate()
@@ -68,6 +72,7 @@ public class Movimiento : MonoBehaviour
             EstoySaltando = true;
 
             rb.AddForce(Vector3.up * fuerzaSalto, ForceMode2D.Impulse);
+            sonidoSalto.Play();
         }
 
      
